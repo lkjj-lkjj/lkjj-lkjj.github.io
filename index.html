@@ -14,7 +14,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #f2acac;
         }
 
         input#open {
@@ -72,11 +71,11 @@
             cursor: pointer;
         }
 
-        #open:checked~.card-front {
+        #open:checked ~ .card-front {
             transform: rotateY(-145deg);
         }
 
-        #open:checked~.card-front:before {
+        #open:checked ~ .card-front:before {
             z-index: 5;
             background-color: #fff0f3;
             width: 330px;
@@ -127,28 +126,49 @@
             content: "";
             top: 80px;
         }
+
+        .tree {
+            position: absolute;
+            width: 200px;
+            height: auto;
+        }
     </style>
 </head>
 
 <body>
-    <div class="card">
-        <input id="open" type="checkbox">
-        <label class="open" for="open"></label>
-        <div class="card-front">
-            <img src="./love.png" alt="" class="love">
-            <div class="note">Merry Christmas! 💗💗💗 </div>
-        </div>
-        <div class="card-inside">
-            <div class="text-one">
-                <h1>💌12.25💌</h1>
-                <h2>
-                    Your eyes are really beautiful, there are rain, sun and moon, mountains,
-                    rivers, clouds, flowers and birds,
-                    but my eyes are better, because I have you in my eyes.
-                </h2>
-            </div>
+<div class="card">
+    <input id="open" type="checkbox">
+    <label class="open" for="open"></label>
+    <div class="card-front">
+        <img src="./love.png" alt="" class="love">
+        <div class="note">Merry Christmas! 💗💗💗</div>
+    </div>
+    <div class="card-inside">
+        <div class="text-one">
+            <h1>💌12.25💌</h1>
+            <h2>
+                丁婉翌！Merry Christmas!
+            </h2>
         </div>
     </div>
+</div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const treeCount = 11;
+            const container = document.body;
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+
+            for (let i = 0; i < treeCount; i++) {
+                const tree = document.createElement("img");
+                tree.src = "tree.gif";
+                tree.className = "tree";
+                tree.style.left = `${centerX + Math.cos((2 * Math.PI / treeCount) * i) * 600 - 100}px`;
+                tree.style.top = `${centerY + Math.sin((2 * Math.PI / treeCount) * i) * 350 - 50}px`;
+                container.appendChild(tree);
+            }
+        });
+    </script>
 </body>
 
 </html>
